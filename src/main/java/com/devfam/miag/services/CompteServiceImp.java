@@ -4,9 +4,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.devfam.miag.dao.CompteRepository;
 import com.devfam.miag.entities.Compte;
+<<<<<<< HEAD
+=======
 
-public class CompteServiceImp implements CompteService{
-	
+public class CompteServiceImp implements CompteService {
+>>>>>>> e639bad3ba7673b0db71c72aa147678781d19918
+
 	// declaration de l'objet CompteRepository pour les traitement avec le DAO
 	@Autowired
 	CompteRepository compteRepo;
@@ -14,6 +17,7 @@ public class CompteServiceImp implements CompteService{
 	@Override
 	public double checkSolde(String numCompte) {
 		// TODO Auto-generated method stub
+<<<<<<< HEAD
 		Compte compte=compteRepo.findByNumCompte(numCompte);
 		
 		if(compte == null) {
@@ -21,17 +25,44 @@ public class CompteServiceImp implements CompteService{
 		}else {
 		
 			return compte.getSolde() ;}
+=======
+
+		return 0;
+>>>>>>> e639bad3ba7673b0db71c72aa147678781d19918
 	}
 
 	@Override
 	public boolean sendMoney(String numCompteSource, String numCompteDest, double somme) {
 		// TODO Auto-generated method stub
-		return false;
+		Compte compte1 = compteRepo.findByNumCompte(numCompteSource);
+		Compte compte2 = compteRepo.findByNumCompte(numCompteDest);
+		double b;
+		double s = compte2.getSolde();
+		if(compte1.getSolde() != 0 && compte1.getSolde() > somme ) {
+			b = compte1.getSolde() - somme;
+		    s += b;
+			return true;
+			
+		}else return false;
 	}
 
 	@Override
 	public boolean crediteAccount(String numCompte, double somme) {
-		// TODO Auto-generated method stub
+		//Credit comppte code
+		double balance = checkSolde(numCompte);
+		if(balance != -1 ) {
+			// COMPTE DOES EXIST
+			if(balance >= somme) {
+				//L'operation est possible car le solde le permet
+				Compte compte =  compteRepo.findByNumCompte(numCompte);
+				compte.setSolde(compte.getSolde() - somme);
+				//Retire la somme voulu du complte choisi
+				compteRepo.save(compte);
+				
+				return true;
+				//OPERATION FAIT AVEC SUCCES
+			}
+		}
 		return false;
 	}
 
