@@ -1,14 +1,18 @@
 package com.devfam.miag.entities;
 
+import java.io.Serializable;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;;
 
 @Entity
-public class Admin {
+public class Admin implements Serializable {
 	@Id
 	@GeneratedValue
 	private Long idAdmin;
+	@Column(unique = true)
 	private String nni;
 	private String login;
 	private String password;

@@ -1,17 +1,21 @@
 package com.devfam.miag.entities;
 
+import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Client {
+public class Client implements Serializable {
 	@Id
 	@GeneratedValue
 	private Long idClient;
+	@Column(unique=true)
 	private String nni;
 	private String login;
 	private String password;
@@ -21,7 +25,7 @@ public class Client {
 	private String adresse;
 	private String telephone;
 	
-	@OneToMany(mappedBy = "client")
+	@OneToMany(mappedBy = "client",fetch = FetchType.LAZY)
 	private List<Compte> listeComptes;
 	
 	

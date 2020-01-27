@@ -1,19 +1,23 @@
 package com.devfam.miag.entities;
 
+import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-public class Compte {
+public class Compte implements Serializable {
 	@Id
 	@GeneratedValue
 	private Long idCompte;
+	@Column(unique = true)
 	private String numCompte;
 	private double solde;
 	@Temporal(TemporalType.DATE)
@@ -21,6 +25,7 @@ public class Compte {
 	private String type;
 	
 	@ManyToOne
+	@JoinColumn(name="Code_client")
 	private Client client;
 	
 	public Client getClient() {
@@ -37,7 +42,7 @@ public class Compte {
 		super();
 		this.numCompte = numCompte;
 		this.solde = solde;
-		this.dateCreation = dateCreation;
+		this.dateCreation = new Date();
 		this.type = type;
 	}
 	public Long getIdCompte() {
