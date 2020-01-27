@@ -3,9 +3,10 @@ package com.devfam.miag.services;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.devfam.miag.dao.CompteRepository;
+import com.devfam.miag.entities.Compte;
 
-public class CompteServiceImp implements CompteService{
-	
+public class CompteServiceImp implements CompteService {
+
 	// declaration de l'objet CompteRepository pour les traitement avec le DAO
 	@Autowired
 	CompteRepository compteRepo;
@@ -13,8 +14,7 @@ public class CompteServiceImp implements CompteService{
 	@Override
 	public double checkSolde(String numCompte) {
 		// TODO Auto-generated method stub
-		
-		
+
 		return 0;
 	}
 
@@ -26,7 +26,21 @@ public class CompteServiceImp implements CompteService{
 
 	@Override
 	public boolean crediteAccount(String numCompte, double somme) {
-		// TODO Auto-generated method stub
+		//Credit comppte code
+		double balance = checkSolde(numCompte);
+		if(balance != -1 ) {
+			// COMPTE DOES EXIST
+			if(balance >= somme) {
+				//L'operation est possible car le solde le permet
+				Compte compte =  compteRepo.findByNumCompte(numCompte);
+				compte.setSolde(compte.getSolde() - somme);
+				//Retire la somme voulu du complte choisi
+				compteRepo.save(compte);
+				
+				return true;
+				//OPERATION FAIT AVEC SUCCES
+			}
+		}
 		return false;
 	}
 
