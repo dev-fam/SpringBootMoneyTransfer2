@@ -3,6 +3,7 @@ package com.devfam.miag.services;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.devfam.miag.dao.CompteRepository;
+import com.devfam.miag.entities.Compte;
 
 public class CompteServiceImp implements CompteService{
 	
@@ -13,9 +14,13 @@ public class CompteServiceImp implements CompteService{
 	@Override
 	public double checkSolde(String numCompte) {
 		// TODO Auto-generated method stub
+		Compte compte=compteRepo.findByNumCompte(numCompte);
 		
+		if(compte == null) {
+			return -1;
+		}else {
 		
-		return 0;
+			return compte.getSolde() ;}
 	}
 
 	@Override
