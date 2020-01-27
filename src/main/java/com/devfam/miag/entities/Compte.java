@@ -38,7 +38,7 @@ public class Compte implements Serializable {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Compte(String numCompte, double solde, Date dateCreation, String type) {
+	public Compte(String numCompte, double solde, String type) {
 		super();
 		this.numCompte = numCompte;
 		this.solde = solde;
