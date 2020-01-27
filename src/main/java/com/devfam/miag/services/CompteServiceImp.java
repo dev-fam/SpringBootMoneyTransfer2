@@ -4,11 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.devfam.miag.dao.CompteRepository;
 import com.devfam.miag.entities.Compte;
-<<<<<<< HEAD
-=======
+
 
 public class CompteServiceImp implements CompteService {
->>>>>>> e639bad3ba7673b0db71c72aa147678781d19918
+
 
 	// declaration de l'objet CompteRepository pour les traitement avec le DAO
 	@Autowired
@@ -17,7 +16,7 @@ public class CompteServiceImp implements CompteService {
 	@Override
 	public double checkSolde(String numCompte) {
 		// TODO Auto-generated method stub
-<<<<<<< HEAD
+
 		Compte compte=compteRepo.findByNumCompte(numCompte);
 		
 		if(compte == null) {
@@ -25,10 +24,6 @@ public class CompteServiceImp implements CompteService {
 		}else {
 		
 			return compte.getSolde() ;}
-=======
-
-		return 0;
->>>>>>> e639bad3ba7673b0db71c72aa147678781d19918
 	}
 
 	@Override

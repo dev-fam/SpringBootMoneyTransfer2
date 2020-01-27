@@ -3,6 +3,7 @@ package com.devfam.miag.entities;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -25,7 +26,7 @@ public class Client implements Serializable {
 	private String adresse;
 	private String telephone;
 	
-	@OneToMany(mappedBy = "client",fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "client",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Compte> listeComptes;
 
 	public Client() {
