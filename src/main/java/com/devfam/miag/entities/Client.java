@@ -3,12 +3,15 @@ package com.devfam.miag.entities;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Client implements Serializable {
@@ -25,7 +28,9 @@ public class Client implements Serializable {
 	private String adresse;
 	private String telephone;
 	
-	@OneToMany(mappedBy = "client",fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "client", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	 @Column(nullable = true)
+    @JsonManagedReference
 	private List<Compte> listeComptes;
 
 	public Client() {
@@ -33,10 +38,9 @@ public class Client implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Client(Long idClient, String nni, String login, String password, String nom, String prenom, String email,
+	public Client(String nni, String login, String password, String nom, String prenom, String email,
 			String adresse, String telephone, List<Compte> listeComptes) {
 		super();
-		this.idClient = idClient;
 		this.nni = nni;
 		this.login = login;
 		this.password = password;
