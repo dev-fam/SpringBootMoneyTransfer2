@@ -1,14 +1,17 @@
 package com.devfam.miag.services;
 
+import java.util.Date;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.devfam.miag.dao.CompteRepository;
 import com.devfam.miag.entities.Compte;
-<<<<<<< HEAD
-=======
 
+
+@Service
 public class CompteServiceImp implements CompteService {
->>>>>>> e639bad3ba7673b0db71c72aa147678781d19918
 
 	// declaration de l'objet CompteRepository pour les traitement avec le DAO
 	@Autowired
@@ -17,18 +20,14 @@ public class CompteServiceImp implements CompteService {
 	@Override
 	public double checkSolde(String numCompte) {
 		// TODO Auto-generated method stub
-<<<<<<< HEAD
-		Compte compte=compteRepo.findByNumCompte(numCompte);
-		
-		if(compte == null) {
-			return -1;
-		}else {
-		
-			return compte.getSolde() ;}
-=======
+		Compte compte = compteRepo.findByNumCompte(numCompte);
 
-		return 0;
->>>>>>> e639bad3ba7673b0db71c72aa147678781d19918
+		if (compte == null) {
+			return -1;
+		} else {
+
+			return compte.getSolde();
+		}
 	}
 
 	@Override
@@ -38,32 +37,59 @@ public class CompteServiceImp implements CompteService {
 		Compte compte2 = compteRepo.findByNumCompte(numCompteDest);
 		double b;
 		double s = compte2.getSolde();
-		if(compte1.getSolde() != 0 && compte1.getSolde() > somme ) {
+		if (compte1.getSolde() != 0 && compte1.getSolde() > somme) {
 			b = compte1.getSolde() - somme;
-		    s += b;
+			s += b;
 			return true;
-			
-		}else return false;
+
+		} else
+			return false;
 	}
 
 	@Override
 	public boolean crediteAccount(String numCompte, double somme) {
-		//Credit comppte code
+		// Credit comppte code
 		double balance = checkSolde(numCompte);
-		if(balance != -1 ) {
+		if (balance != -1) {
 			// COMPTE DOES EXIST
-			if(balance >= somme) {
-				//L'operation est possible car le solde le permet
-				Compte compte =  compteRepo.findByNumCompte(numCompte);
-				compte.setSolde(compte.getSolde() - somme);
-				//Retire la somme voulu du complte choisi
+			if (balance >= somme) {
+				// L'operation est possible car le solde le permet
+				Compte compte = compteRepo.findByNumCompte(numCompte);
+				compte.setSolde(balance - somme);
+				// Retire la somme voulu du complte choisi
 				compteRepo.save(compte);
-				
+
 				return true;
-				//OPERATION FAIT AVEC SUCCES
+				// OPERATION FAIT AVEC SUCCES
 			}
 		}
 		return false;
+	}
+	
+	public Compte addCompte(Compte compte) {
+		Compte newCompte = compteRepo.save(compte);
+		if(newCompte != null) {
+			newCompte.setDateCreation(new Date());
+			compteRepo.save(newCompte);
+		}
+		return newCompte;
+		
+	}
+
+	@Override
+	public List<Compte> getAllComptes() {
+		return compteRepo.findAll();
+	}
+
+	
+	public Compte getCompteById(Long id) {
+		return compteRepo.findById(id).get();
+	}
+
+	@Override
+	public Compte getCompteByNumCompte(String numCompte) {
+		// TODO Auto-generated method stub
+		return compteRepo.findByNumCompte(numCompte);
 	}
 
 }

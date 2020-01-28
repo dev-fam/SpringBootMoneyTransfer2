@@ -1,6 +1,13 @@
 package com.devfam.miag.services;
 
-public interface CompteService {
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import com.devfam.miag.entities.Compte;
+
+@Service
+public interface CompteService{
 	
 	//La verification d'une compte
 	public double checkSolde(String numCompte);
@@ -10,7 +17,13 @@ public interface CompteService {
 	
 	// Crediter un compte
 	public boolean crediteAccount(String numCompte,double somme);
+
+	public List<Compte> getAllComptes();
 	
-	//
+	public Compte getCompteByNumCompte(String numCompte);
+
+	public Compte getCompteById(Long id);
+
+	public Compte addCompte(Compte compte);
 
 }

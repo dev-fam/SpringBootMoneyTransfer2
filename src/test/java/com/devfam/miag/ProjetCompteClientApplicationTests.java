@@ -1,4 +1,4 @@
-package com.devfam.miag.account;
+package com.devfam.miag;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

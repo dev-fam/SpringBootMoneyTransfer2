@@ -3,14 +3,18 @@ package com.devfam.miag.entities;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 public class Compte implements Serializable {
@@ -23,9 +27,10 @@ public class Compte implements Serializable {
 	@Temporal(TemporalType.DATE)
 	private Date dateCreation;
 	private String type;
-	
-	@ManyToOne
-	@JoinColumn(name="Code_client")
+
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinColumn(name = "Code_client", nullable = false)
+	@JsonBackReference
 	private Client client;
 
 	public Compte() {
@@ -33,12 +38,10 @@ public class Compte implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Compte(Long idCompte, String numCompte, double solde, Date dateCreation, String type, Client client) {
+	public Compte(String numCompte, double solde,  String type, Client client) {
 		super();
-		this.idCompte = idCompte;
 		this.numCompte = numCompte;
 		this.solde = solde;
-		this.dateCreation = dateCreation;
 		this.type = type;
 		this.client = client;
 	}
@@ -86,5 +89,5 @@ public class Compte implements Serializable {
 	public Client getClient() {
 		return client;
 	}
-	
-	}
+
+}
