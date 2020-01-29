@@ -11,14 +11,13 @@ import com.devfam.miag.entities.Client;
 
 public interface AdminService  {
 	
-	// Ajouter d'un client
-	public boolean addClient(Client client);
+
 	
 	public Admin addAdmin(Admin admin);
 	
 	
-	// Supression d'un client
-	public boolean deleteClient(Long idClient);
+	// Supression d'un admin
+	public void deleteAdmin(Long idAdmin);
 	
 	public List<Admin> getAllAdmins();
 

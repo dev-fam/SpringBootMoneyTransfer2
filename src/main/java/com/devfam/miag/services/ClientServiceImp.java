@@ -61,4 +61,18 @@ public class ClientServiceImp implements ClientService {
 
 	}
 
+	@Override
+	public boolean deleteClient(Long idClient) {
+		// TODO Auto-generated method stub
+		Optional<Client> client = repoClient.findById(idClient);
+		if(client == null) {
+			return false;
+		}else {
+			repoClient.delete(client.get());
+			return true;
+		}
+		
+	}
+
+
 }

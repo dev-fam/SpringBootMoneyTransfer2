@@ -30,6 +30,15 @@ public class ClientController {
 		
 	}
 	
+	@PostMapping("/delete")
+	public String deleteClient(@RequestBody Client client) {
+		boolean result = clientService.deleteClient(client.getIdClient());
+		if (result == true)
+			return "SUCCESS";
+		else
+			return "FAILURE";
+	}
+	
 	@GetMapping("/{id}")
 	public Client getClients(@PathVariable Long id){
 		return clientService.getClient(id);

@@ -20,5 +20,7 @@ public interface ClientService {
 	public Client  getClient(Long id);
 	// CREATE NEW CLIENT
 	public Client addClient(Client client);
+	
+	public boolean deleteClient(Long id);
 
 }

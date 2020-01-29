@@ -33,17 +33,21 @@ public class CompteServiceImp implements CompteService {
 	@Override
 	public boolean sendMoney(String numCompteSource, String numCompteDest, double somme) {
 		// TODO Auto-generated method stub
-		Compte compte1 = compteRepo.findByNumCompte(numCompteSource);
-		Compte compte2 = compteRepo.findByNumCompte(numCompteDest);
-		double b;
-		double s = compte2.getSolde();
-		if (compte1.getSolde() != 0 && compte1.getSolde() > somme) {
-			b = compte1.getSolde() - somme;
-			s += b;
-			return true;
+		Compte compteSource = compteRepo.findByNumCompte(numCompteSource);
+		Compte compteDest = compteRepo.findByNumCompte(numCompteDest);
 
-		} else
-			return false;
+		if(compteSource != null && compteDest != null) {
+			if (compteSource.getSolde() >= somme) {
+				compteSource.setSolde(compteSource.getSolde() - somme);
+				compteDest.setSolde(compteDest.getSolde() + somme);
+				
+				//SAVE CHANGES
+				compteRepo.save(compteSource);
+				compteRepo.save(compteDest);
+				return true;
+			} 
+		}
+		return false;
 	}
 
 	@Override
