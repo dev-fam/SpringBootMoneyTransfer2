@@ -1,6 +1,7 @@
 package com.devfam.miag.services;
 
 import java.util.Date;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,9 +10,11 @@ import org.springframework.stereotype.Service;
 import com.devfam.miag.dao.CompteRepository;
 import com.devfam.miag.entities.Compte;
 
-
 @Service
 public class CompteServiceImp implements CompteService {
+
+
+
 
 	// declaration de l'objet CompteRepository pour les traitement avec le DAO
 	@Autowired
@@ -20,6 +23,16 @@ public class CompteServiceImp implements CompteService {
 	@Override
 	public double checkSolde(String numCompte) {
 		// TODO Auto-generated method stub
+		Compte compte=compteRepo.findByNumCompte(numCompte);
+		
+		if(compte == null) {
+			return -1;
+		}else {
+		
+			return compte.getSolde() ;
+			}
+			return compte.getSolde() ;}
+
 		Compte compte = compteRepo.findByNumCompte(numCompte);
 
 		if (compte == null) {
@@ -28,8 +41,10 @@ public class CompteServiceImp implements CompteService {
 
 			return compte.getSolde();
 		}
+
 	}
 
+	
 	@Override
 	public boolean sendMoney(String numCompteSource, String numCompteDest, double somme) {
 		// TODO Auto-generated method stub
@@ -49,7 +64,25 @@ public class CompteServiceImp implements CompteService {
 		}
 		return false;
 	}
+		//Envoyer de l'aregent
+		
+		double balance = checkSolde(numCompteSource);
+		if(balance != -1 ) {
+			//verication si le compte existe
+			Compte compte1 = compteRepo.findByNumCompte(numCompteSource);
+			Compte compte2 = compteRepo.findByNumCompte(numCompteDest);
+			
+			if(compte1.getSolde() != 0 && compte1.getSolde() > somme ) {
+				//verification si le solde contient une valeur superieur à somme 
+				compte2.setSolde(compte1.getSolde() - somme);
+				compteRepo.save(compte2);
+				return true;
+			}
+			
+		}
+		return false;
 
+	}
 	@Override
 	public boolean crediteAccount(String numCompte, double somme) {
 		// Credit comppte code

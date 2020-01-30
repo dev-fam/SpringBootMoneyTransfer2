@@ -3,9 +3,6 @@ package com.devfam.miag.services;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.devfam.miag.dao.ClientRepository;
 import com.devfam.miag.entities.Client;
 
@@ -74,5 +71,25 @@ public class ClientServiceImp implements ClientService {
 		
 	}
 
+	public boolean VerificationPassword(String password,String encodedPwd) {
+		// TODO Auto-generated method stub
+		
+		
+			BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+	        
+	        if(passwordEncoder.matches(password, encodedPwd)){
+				return true;}
+			else {return false;}
+		
+		
+	}
+
+	@Override
+	public String CryptdMdp(String pwd) {
+		// TODO Auto-generated method stub
+		 BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+	        String crypted= passwordEncoder.encode(pwd);
+		return crypted ;
+	}
 
 }
