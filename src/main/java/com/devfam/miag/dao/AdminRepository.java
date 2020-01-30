@@ -9,5 +9,7 @@ import com.devfam.miag.entities.Admin;
 public interface AdminRepository extends JpaRepository<Admin, Long> {
 
 	Optional<Admin> findByLogin(String login);
+	Optional<Admin> findByPassword(String password);
+	
 
 }

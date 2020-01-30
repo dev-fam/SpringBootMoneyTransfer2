@@ -1,21 +1,50 @@
 package com.devfam.miag;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
- 
-import com.devfam.miag.dao.AdminRepository;
-import com.devfam.miag.dao.ClientRepository;
-import com.devfam.miag.services.AdminSecurityDetailsService;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
-@EnableWebSecurity
-@EnableJpaRepositories(basePackageClasses = AdminRepository.class)
+import com.devfam.miag.dao.AdminRepository;
+import com.devfam.miag.entities.Admin;
+
+
+
 @Configuration
-public class ConfigurationSecurity {
+//@EnableWebSecurity
+public class ConfigurationSecurity extends WebSecurityConfigurerAdapter {
 	
 	@Autowired
-	private AdminSecurityDetailsService adminDetService;
+	AdminRepository adminRepo;
+
+	
+	@Override
+	protected void configure(HttpSecurity http) throws Exception {
+		// TODO Auto-generated method stub
+		http.cors();
+		http.csrf().disable();
+		http.authorizeRequests()
+			.antMatchers("/**")
+			.fullyAuthenticated().
+				and().httpBasic();
+		
+		
+			
+	}
+	
+	@Autowired
+	public void globalConfig(AuthenticationManagerBuilder auth) throws Exception {
+	
+		List<Admin> listAdmin =adminRepo.findAll();
+		for(Admin ad:listAdmin) {
+		 auth.inMemoryAuthentication().withUser(ad.getLogin()).password("{noop}"+ad.getPassword()).roles("ADMIN");}
+		
+	}
+
+	
 	
 
 }

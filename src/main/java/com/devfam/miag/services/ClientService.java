@@ -8,5 +8,12 @@ public interface ClientService {
 	
 	// Recuperation de mot de passe 
 	public void resetPassword();
+	
+	
+	//Hachage e mot de passe
+	public String CryptdMdp(String pwd);
+	
+	//Verification de nmot de passe
+	public boolean VerificationPassword(String password,String encodedPwd);
 
 }

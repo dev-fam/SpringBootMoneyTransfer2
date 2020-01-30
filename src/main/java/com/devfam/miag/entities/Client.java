@@ -34,10 +34,10 @@ public class Client implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Client(Long idClient, String nni, String login, String password, String nom, String prenom, String email,
+	public Client(String nni, String login, String password, String nom, String prenom, String email,
 			String adresse, String telephone, List<Compte> listeComptes) {
 		super();
-		this.idClient = idClient;
+		
 		this.nni = nni;
 		this.login = login;
 		this.password = password;
