@@ -1,7 +1,12 @@
 package com.devfam.miag.services;
 
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
 import com.devfam.miag.entities.Client;
 
+@Service
 public interface ClientService {
 	
 	public boolean updateClient(Client client);
@@ -15,5 +20,12 @@ public interface ClientService {
 	
 	//Verification de nmot de passe
 	public boolean VerificationPassword(String password,String encodedPwd);
+
+	public List<Client> getAllClients();
+	
+	//FETCH CLIENT
+	public Client  getClient(Long id);
+	// CREATE NEW CLIENT
+	public Client addClient(Client client);
 
 }

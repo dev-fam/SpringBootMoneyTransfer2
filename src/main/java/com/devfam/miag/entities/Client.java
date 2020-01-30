@@ -11,6 +11,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 public class Client implements Serializable {
 	@Id
@@ -26,7 +28,13 @@ public class Client implements Serializable {
 	private String adresse;
 	private String telephone;
 	
+<<<<<<< HEAD
 	@OneToMany(mappedBy = "client",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+=======
+	@OneToMany(mappedBy = "client", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	 @Column(nullable = true)
+    @JsonManagedReference
+>>>>>>> 11008cfa552a986bf11b915fbce61d32feb3326c
 	private List<Compte> listeComptes;
 
 	public Client() {
@@ -37,7 +45,10 @@ public class Client implements Serializable {
 	public Client(String nni, String login, String password, String nom, String prenom, String email,
 			String adresse, String telephone, List<Compte> listeComptes) {
 		super();
+<<<<<<< HEAD
 		
+=======
+>>>>>>> 11008cfa552a986bf11b915fbce61d32feb3326c
 		this.nni = nni;
 		this.login = login;
 		this.password = password;
