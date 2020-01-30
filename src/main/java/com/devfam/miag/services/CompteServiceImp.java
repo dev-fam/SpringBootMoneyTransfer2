@@ -9,14 +9,33 @@ import org.springframework.stereotype.Service;
 
 import com.devfam.miag.dao.CompteRepository;
 import com.devfam.miag.entities.Compte;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+
+=======
+>>>>>>> 88c13543b3efa8e05fa6307cc92926b01fb10e8d
+>>>>>>> 11008cfa552a986bf11b915fbce61d32feb3326c
+>>>>>>> 3852ea356f1acc324a35f7fae1a71c3f745a19eb
 
 
 @Service
 public class CompteServiceImp implements CompteService {
 
+<<<<<<< HEAD
 
 	/*.........................................................................................*/
 	/*.........................................................................................*/
+=======
+=======
+<<<<<<< HEAD
+
+=======
+>>>>>>> 88c13543b3efa8e05fa6307cc92926b01fb10e8d
+>>>>>>> 11008cfa552a986bf11b915fbce61d32feb3326c
+>>>>>>> 3852ea356f1acc324a35f7fae1a71c3f745a19eb
 
 	// declaration de l'objet CompteRepository pour les traitement avec le DAO
 	@Autowired
@@ -25,14 +44,39 @@ public class CompteServiceImp implements CompteService {
 	@Override
 	public double checkSolde(String numCompte) {
 		// TODO Auto-generated method stub
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 11008cfa552a986bf11b915fbce61d32feb3326c
+
+>>>>>>> 3852ea356f1acc324a35f7fae1a71c3f745a19eb
 		Compte compte=compteRepo.findByNumCompte(numCompte);
 		
 		if(compte == null) {
 			return -1;
 		}else {
 		
+<<<<<<< HEAD
 			return compte.getSolde() ;
 			}
+=======
+			return compte.getSolde() ;}
+<<<<<<< HEAD
+=======
+=======
+		Compte compte = compteRepo.findByNumCompte(numCompte);
+
+		if (compte == null) {
+			return -1;
+		} else {
+
+			return compte.getSolde();
+		}
+>>>>>>> 88c13543b3efa8e05fa6307cc92926b01fb10e8d
+>>>>>>> 11008cfa552a986bf11b915fbce61d32feb3326c
+>>>>>>> 3852ea356f1acc324a35f7fae1a71c3f745a19eb
 	}
 
 	/*.........................................................................................*/
