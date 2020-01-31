@@ -7,11 +7,12 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.devfam.miag.dao.ClientRepository;
 import com.devfam.miag.entities.Client;
 import com.devfam.miag.services.ClientService;
 
@@ -24,8 +25,6 @@ public class ClientController {
 	@Autowired
 	ClientService clientService;
 	
-	@Autowired
-	ClientRepository clientRepo;
 	
 	@GetMapping("/all")
 	public List<Client> getClients(){
@@ -58,6 +57,11 @@ public class ClientController {
 	public Client updateClient(@RequestBody Client client) {
 		clientService.updateClient(client);
 		return clientService.getClient(client.getIdClient());
+	}
+	
+	@GetMapping("/login")
+	public boolean login(@RequestParam String login, @RequestParam String password){
+		return clientService.login(login, password);
 	}
 
 }

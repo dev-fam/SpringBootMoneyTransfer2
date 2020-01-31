@@ -16,13 +16,11 @@ import com.devfam.miag.services.AdminService;
 
 @RestController
 @RequestMapping("/admin")
-
 @CrossOrigin(origins = "http://localhost:4200")
 // THIS IS SO THAT ANGULAR GET INTERACT WITH OUR BACKEND
 public class AdminController {
 	@Autowired
 	AdminService adminService;
-
 
 
 	@PostMapping("/new")

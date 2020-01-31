@@ -28,5 +28,8 @@ public interface ClientService {
 	public Client addClient(Client client);
 	
 	public boolean deleteClient(Long id);
+	
+	public boolean login(String login, String pwd);
+
 
 }

@@ -37,6 +37,8 @@ public class AdminServiceImp implements AdminService  {
 
 	@Override
 	public Admin addAdmin(Admin admin) {
+		String password = admin.getPassword();
+		
 		return  adminRepo.save(admin);
 	}
 

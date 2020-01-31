@@ -3,6 +3,7 @@ package com.devfam.miag.services;
 
 import java.util.List;
 
+import org.apache.tomcat.util.security.MD5Encoder;
 import org.springframework.stereotype.Service;
 
 import com.devfam.miag.entities.Admin;
@@ -23,5 +24,7 @@ public interface AdminService  {
 
 
 	public Admin getAdminById(Long id);
+	
+	
 	
 }

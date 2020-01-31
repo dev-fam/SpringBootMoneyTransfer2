@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.devfam.miag.entities.Compte;
 
-@Service
+
 public interface CompteService{
 	
 	//La verification d'une compte

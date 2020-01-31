@@ -53,22 +53,22 @@ public class CompteController {
 	
 	
 	@GetMapping("/retrait")
-	public String faireRetrait(@RequestParam String numCompte, @RequestParam double montant) {
+	public double faireRetrait(@RequestParam String numCompte, @RequestParam double montant) {
 		// TAKE THESE VALUES FROM A FORM THEN USE creditCompte service
 		boolean result = compteService.crediteAccount(numCompte, montant);
 		if(result == true)
-			return "Retrait avec Succés: "+montant+" MRO";
-		else return "FAILURE";
+			return montant;
+		else return -1;
 	}
 	
-	@PostMapping("/transfer/source/{numCompteSource}/dest/{numCompteDest}/montant/{montant}")
-	public String send(@PathVariable String numCompteSource, @PathVariable String numCompteDest, @PathVariable double montant) {
+	@GetMapping("/transfer/source/{numCompteSource}/dest/{numCompteDest}/montant/{montant}")
+	public double send(@PathVariable String numCompteSource, @PathVariable String numCompteDest, @PathVariable double montant) {
 		// TAKE THESE VALUES FROM A FORM THEN USE creditCompte service
 
 		boolean result = compteService.sendMoney(numCompteSource, numCompteDest, montant);
 		//SUCCESS VS FAILED
 		if(result == true)
-			return "Tranfert fait avec SUCCESS : "+numCompteSource+" ---> "+numCompteDest+" : "+montant+" MRO ";
-		else return "FAILURE : Pas de solde suffisant";
+			return montant;
+		else return -1;
 	}
 }

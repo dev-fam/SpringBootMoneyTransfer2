@@ -35,8 +35,9 @@ public class Compte implements Serializable {
 	@JsonBackReference
 	private Client client;
 	
-	@OneToMany(mappedBy = "compte")
-	List<Operation> operations;
+	/*
+	 * @OneToMany(mappedBy = "compte") List<Operation> operations;
+	 */
 
 	public Compte() {
 		super();
