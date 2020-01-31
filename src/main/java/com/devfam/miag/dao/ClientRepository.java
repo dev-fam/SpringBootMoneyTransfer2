@@ -12,5 +12,4 @@ public interface ClientRepository extends JpaRepository<Client, Long> {
 	Client findByNni(String nni);
 	public List<Client>  findByNom(String nom);
 	
-
 }

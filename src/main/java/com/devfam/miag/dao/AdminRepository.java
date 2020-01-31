@@ -14,4 +14,5 @@ public interface AdminRepository extends JpaRepository<Admin, Long> {
 	
 	Admin findByNni(String nni);
 
+
 }

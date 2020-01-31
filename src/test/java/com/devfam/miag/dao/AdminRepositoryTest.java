@@ -29,10 +29,28 @@ class AdminRepositoryTest {
    /*..................................................................................................../
     .....................................................................................................*/
 	@Test
+
+	public void addedClientTest() {
+		List<Compte> listcompte = new ArrayList<>();
+	Client client = new Client("34566222","rox","222","Dia","Mamadou","oumar@gmail.com","5eme","34523725", listcompte);
+		//Client c = em.persist(client);
+		//Client c1 = adminRepository.findByNni(c);
+	}
+		
+		
+		
+		
+		
+		/*
+		Admin admin = new Admin(20L,"324566737","bowsy","1234","Ba","oumar", "344444@gmail.com");
+		adminrepository.save(admin);
+		Admin admin1 = adminrepository.findByNni("324566737");
+=======
 	public void testAddAmdin() {
 		Admin admin = new Admin("324566737","bowsy","1234","Ba","oumar", "344444@gmail.com");
 		adminRepository.save(admin);
 		Admin admin1 = adminRepository.findByNni("324566737");
+>>>>>>> 5f673aeffaf3208672de520d40504a3291b97583
 		assertEquals(admin.getNni(), admin1.getNni());
 		assertEquals(admin.getPassword(), admin1.getPassword());
 	}

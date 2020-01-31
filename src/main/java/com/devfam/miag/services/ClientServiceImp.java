@@ -3,6 +3,7 @@ package com.devfam.miag.services;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+
 import java.util.List;
 import java.util.Optional;
 
@@ -65,15 +66,21 @@ public class ClientServiceImp implements ClientService {
 	}
 
 	@Override
+	public boolean deleteClient(Long idClient) {
+		// TODO Auto-generated method stub
+		Optional<Client> client = repoClient.findById(idClient);
+		if(client == null) {
+			return false;
+		}else {
+			repoClient.delete(client.get());
+			return true;
+		}
+		
+	}
+
 	public boolean VerificationPassword(String password,String encodedPwd) {
 		// TODO Auto-generated method stub
-		
-		
-			BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-	        
-	        if(passwordEncoder.matches(password, encodedPwd)){
-				return true;}
-			else {return false;}
+	return true;
 		
 		
 	}
@@ -81,9 +88,10 @@ public class ClientServiceImp implements ClientService {
 	@Override
 	public String CryptdMdp(String pwd) {
 		// TODO Auto-generated method stub
-		 BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-	        String crypted= passwordEncoder.encode(pwd);
-		return crypted ;
+		Md5 cod=new Md5(pwd);
+		return cod.codeGet();
+		
+		
 	}
 
 }

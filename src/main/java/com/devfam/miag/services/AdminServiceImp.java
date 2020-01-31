@@ -21,30 +21,7 @@ public class AdminServiceImp implements AdminService  {
 	@Autowired
 	AdminRepository adminRepo;
 	
-	
-	@Override
-	public boolean addClient(Client client) {
-		// TODO Auto-generated method stub
-		
-		Client cl =clientRepo.save(client);
-		if(cl == null)
-			return false;
-		else return true;
-	}
 
-
-	@Override
-	public boolean deleteClient(Long idClient) {
-		// TODO Auto-generated method stub
-		Optional<Client> client = clientRepo.findById(idClient);
-		if(client == null) {
-			return false;
-		}else {
-			clientRepo.delete(client.get());
-			return true;
-		}
-		
-	}
 
 	@Override
 	public List<Admin> getAllAdmins() {
@@ -61,6 +38,13 @@ public class AdminServiceImp implements AdminService  {
 	@Override
 	public Admin addAdmin(Admin admin) {
 		return  adminRepo.save(admin);
+	}
+
+
+	@Override
+	public void deleteAdmin(Long idAdmin) {
+		Admin admin = adminRepo.findById(idAdmin).get();
+		adminRepo.delete(admin);
 	}
 
 
