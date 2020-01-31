@@ -1,10 +1,11 @@
 package com.devfam.miag.services;
 
+
+
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.devfam.miag.dao.ClientRepository;
@@ -85,7 +86,6 @@ public class ClientServiceImp implements ClientService {
 		} else {
 			return false;
 		}
-
 	}
 
 	@Override
@@ -96,11 +96,10 @@ public class ClientServiceImp implements ClientService {
 		 * crypted= passwordEncoder.encode(pwd);
 		 */
 
-		MD5 md5 = new MD5(pwd);
+		Md5 md5 = new Md5(pwd);
 
-		System.out.println(pwd + "----" + md5.getCode());
-
-		return md5.getCode();
+	
+		return md5.codeGet();
 
 		// REPLACE BY MD5
 	}
@@ -112,6 +111,7 @@ public class ClientServiceImp implements ClientService {
 		if (client.getPassword().equals(CryptdMdp(pwd)))
 			return true;
 		return false;
+
 	}
 
 }

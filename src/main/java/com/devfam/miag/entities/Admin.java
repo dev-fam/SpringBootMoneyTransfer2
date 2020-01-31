@@ -26,8 +26,8 @@ public class Admin implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-
 	public Admin( String nni, String login, String password, String nom, String prenom, String email) {
+
 
 		super();
 		this.nni = nni;
@@ -42,7 +42,9 @@ public class Admin implements Serializable {
 		return idAdmin;
 	}
 
-
+	public void setIdAdmin(Long idAdmin) {
+		this.idAdmin = idAdmin;
+	}
 
 	public String getNni() {
 		return nni;

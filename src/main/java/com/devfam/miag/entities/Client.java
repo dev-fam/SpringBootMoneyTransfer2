@@ -33,6 +33,7 @@ public class Client implements Serializable {
 	 @Column(nullable = true)
     @JsonManagedReference
 
+
 	private List<Compte> listeComptes;
 
 	public Client() {
@@ -43,7 +44,6 @@ public class Client implements Serializable {
 	public Client(String nni, String login, String password, String nom, String prenom, String email,
 			String adresse, String telephone, List<Compte> listeComptes) {
 		super();
-		
 
 		this.nni = nni;
 		this.login = login;

@@ -31,8 +31,10 @@ public class AdminServiceTest {
 	@MockBean
 	private AdminRepository adminrepository;
 	
+	 /*..................................................................................................../
+    .....................................................................................................*/
 	@Test
-	public void addClientTest() {
+	public void addAdmin() {
 		Admin admin = new Admin();
 		admin.setNni("23123441");
 		admin.setLogin("Monnlight");
@@ -44,7 +46,8 @@ public class AdminServiceTest {
 		Mockito.when(adminrepository.save(admin)).thenReturn(admin);
 		assertThat(adminservice.addAdmin(admin)).isEqualTo(admin);
 	}
-	
+	 /*..................................................................................................../
+    .....................................................................................................*/
 	@Test
 	public void  getAllAdmins() {
 		Admin admin1 = new Admin();
@@ -69,6 +72,24 @@ public class AdminServiceTest {
 		
 		Mockito.when(adminrepository.findAll()).thenReturn(malist);
 		assertThat(adminservice.getAllAdmins()).isEqualTo(malist);
+	}
+	 /*..................................................................................................../
+    .....................................................................................................*/
+	@Test
+	public void getAdminById() {
+		Admin admin1 = new Admin();
+		admin1.setIdAdmin(29L);
+		admin1.setNni("23123441");
+		admin1.setLogin("Monnlight");
+		admin1.setPassword("123");
+		admin1.setNom("BA");
+		admin1.setPrenom("Ismail");
+		admin1.setEmail("Isamil@gmail.com");
+		adminservice.addAdmin(admin1);
+		//Admin admin2 = adminservice.getAdminById(admin1.getIdAdmin());
+		
+		Mockito.when(adminrepository.getOne(admin1.getIdAdmin())).thenReturn(admin1); 
+		
 	}
 	
 

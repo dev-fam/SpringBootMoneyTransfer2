@@ -17,13 +17,14 @@ public class CompteServiceImp implements CompteService {
 	// declaration de l'objet CompteRepository pour les traitement avec le DAO
 	@Autowired
 	CompteRepository compteRepo;
-	
-	@Autowired 
+
+	@Autowired
 	OperationRepository operationRepo;
 
 	@Override
 	public double checkSolde(String numCompte) {
 		// TODO Auto-generated method stub
+
 		Compte compte = compteRepo.findByNumCompte(numCompte);
 
 		if (compte == null) {
@@ -32,8 +33,8 @@ public class CompteServiceImp implements CompteService {
 
 			return compte.getSolde();
 		}
-	}
 
+	}
 
 	@Override
 	public boolean sendMoney(String numCompteSource, String numCompteDest, double somme) {
@@ -41,24 +42,27 @@ public class CompteServiceImp implements CompteService {
 		Compte compteSource = compteRepo.findByNumCompte(numCompteSource);
 		Compte compteDest = compteRepo.findByNumCompte(numCompteDest);
 
-		if(compteSource != null && compteDest != null) {
+		if (compteSource != null && compteDest != null) {
 			if (compteSource.getSolde() >= somme) {
 				compteSource.setSolde(compteSource.getSolde() - somme);
 				compteDest.setSolde(compteDest.getSolde() + somme);
-				
-				//SAVE CHANGES
+
+				// SAVE CHANGES
 				compteRepo.save(compteSource);
 				compteRepo.save(compteDest);
-				
-				//RECORD THE OPERATION
-				operationRepo.save(new Operation("Transfert", "", new Date(), "Transfert de "+somme+":From "+numCompteSource+" to "+numCompteDest));
+
+				// RECORD THE OPERATION
+				operationRepo.save(new Operation("Transfert", "", new Date(),
+						"Transfert de " + somme + ":From " + numCompteSource + " to " + numCompteDest));
 
 				return true;
-			} 
+			}
+
+			
 		}
 		return false;
 	}
-	
+
 	@Override
 	public boolean crediteAccount(String numCompte, double somme) {
 		// Credit comppte code
@@ -71,9 +75,9 @@ public class CompteServiceImp implements CompteService {
 				compte.setSolde(balance - somme);
 				// Retire la somme voulu du complte choisi
 				compteRepo.save(compte);
-				
-				//RECORD THE OPERATION
-				operationRepo.save(new Operation("Retrait", numCompte, new Date(), "Retrait de "+somme));
+
+				// RECORD THE OPERATION
+				operationRepo.save(new Operation("Retrait", numCompte, new Date(), "Retrait de " + somme));
 
 				return true;
 				// OPERATION FAIT AVEC SUCCES
@@ -84,16 +88,17 @@ public class CompteServiceImp implements CompteService {
 
 	public Compte addCompte(Compte compte) {
 		Compte newCompte = compteRepo.save(compte);
-		if(newCompte != null) {
+		if (newCompte != null) {
 			newCompte.setDateCreation(new Date());
 			compteRepo.save(newCompte);
-			
-			//RECORD THE OPERATION
-			operationRepo.save(new Operation("CreationCompte", compte.getNumCompte(), new Date(), "Creation de Compte"));
+
+			// RECORD THE OPERATION
+			operationRepo
+					.save(new Operation("CreationCompte", compte.getNumCompte(), new Date(), "Creation de Compte"));
 
 		}
 		return newCompte;
-		
+
 	}
 
 	@Override
@@ -110,6 +115,5 @@ public class CompteServiceImp implements CompteService {
 		// TODO Auto-generated method stub
 		return compteRepo.findByNumCompte(numCompte);
 	}
-
 
 }
