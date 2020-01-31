@@ -11,7 +11,10 @@ import com.devfam.miag.entities.Compte;
 
 @Service
 public class CompteServiceImp implements CompteService {
+<<<<<<< HEAD
 
+=======
+>>>>>>> 5f673aeffaf3208672de520d40504a3291b97583
 
 	// declaration de l'objet CompteRepository pour les traitement avec le DAO
 	@Autowired
@@ -20,6 +23,7 @@ public class CompteServiceImp implements CompteService {
 	@Override
 	public double checkSolde(String numCompte) {
 		// TODO Auto-generated method stub
+<<<<<<< HEAD
 
 		Compte compte=compteRepo.findByNumCompte(numCompte);
 		
@@ -28,12 +32,22 @@ public class CompteServiceImp implements CompteService {
 		}else {
 		
 			return compte.getSolde() ;}
+=======
+		Compte compte = compteRepo.findByNumCompte(numCompte);
+
+		if (compte == null) {
+			return -1;
+		} else {
+
+			return compte.getSolde();
+		}
+>>>>>>> 5f673aeffaf3208672de520d40504a3291b97583
 	}
 
-	/*.........................................................................................*/
-	/*.........................................................................................*/
+
 	@Override
 	public boolean sendMoney(String numCompteSource, String numCompteDest, double somme) {
+<<<<<<< HEAD
 
 		//Envoyer de l'aregent
 		
@@ -47,15 +61,30 @@ public class CompteServiceImp implements CompteService {
 				//verification si le solde contient une valeur superieur à somme 
 				compte2.setSolde(compte1.getSolde() - somme);
 				compteRepo.save(compte2);
+=======
+		// TODO Auto-generated method stub
+		Compte compteSource = compteRepo.findByNumCompte(numCompteSource);
+		Compte compteDest = compteRepo.findByNumCompte(numCompteDest);
+
+		if(compteSource != null && compteDest != null) {
+			if (compteSource.getSolde() >= somme) {
+				compteSource.setSolde(compteSource.getSolde() - somme);
+				compteDest.setSolde(compteDest.getSolde() + somme);
+				
+				//SAVE CHANGES
+				compteRepo.save(compteSource);
+				compteRepo.save(compteDest);
+>>>>>>> 5f673aeffaf3208672de520d40504a3291b97583
 				return true;
-			}
-			
+			} 
 		}
 		return false;
+<<<<<<< HEAD
 
+=======
+>>>>>>> 5f673aeffaf3208672de520d40504a3291b97583
 	}
-	/*.........................................................................................*/
-	/*.........................................................................................*/
+	
 	@Override
 	public boolean crediteAccount(String numCompte, double somme) {
 		// Credit comppte code
@@ -75,7 +104,7 @@ public class CompteServiceImp implements CompteService {
 		}
 		return false;
 	}
-	
+
 	public Compte addCompte(Compte compte) {
 		Compte newCompte = compteRepo.save(compte);
 		if(newCompte != null) {
@@ -91,7 +120,6 @@ public class CompteServiceImp implements CompteService {
 		return compteRepo.findAll();
 	}
 
-	
 	public Compte getCompteById(Long id) {
 		return compteRepo.findById(id).get();
 	}

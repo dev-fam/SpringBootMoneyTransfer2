@@ -29,7 +29,6 @@ public class Client implements Serializable {
 	private String telephone;
 	
 
-
 	@OneToMany(mappedBy = "client", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	 @Column(nullable = true)
     @JsonManagedReference
@@ -44,6 +43,8 @@ public class Client implements Serializable {
 	public Client(String nni, String login, String password, String nom, String prenom, String email,
 			String adresse, String telephone, List<Compte> listeComptes) {
 		super();
+
+
 		this.nni = nni;
 		this.login = login;
 		this.password = password;

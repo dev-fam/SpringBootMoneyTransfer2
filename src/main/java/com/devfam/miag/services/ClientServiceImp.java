@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.devfam.miag.dao.ClientRepository;
@@ -66,15 +67,21 @@ public class ClientServiceImp implements ClientService {
 	}
 
 	@Override
+	public boolean deleteClient(Long idClient) {
+		// TODO Auto-generated method stub
+		Optional<Client> client = repoClient.findById(idClient);
+		if(client == null) {
+			return false;
+		}else {
+			repoClient.delete(client.get());
+			return true;
+		}
+		
+	}
+
 	public boolean VerificationPassword(String password,String encodedPwd) {
 		// TODO Auto-generated method stub
-		
-		
-			BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-	        
-	        if(passwordEncoder.matches(password, encodedPwd)){
-				return true;}
-			else {return false;}
+	return true;
 		
 		
 	}

@@ -7,8 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-
 @Entity
 public class Admin implements Serializable {
 	@Id
@@ -28,8 +26,8 @@ public class Admin implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-
 	public Admin(String nni, String login, String password, String nom, String prenom, String email) {
+
 
 		super();
 		this.nni = nni;

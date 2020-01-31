@@ -4,6 +4,7 @@ import org.slf4j.LoggerFactory;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,13 +18,16 @@ import com.devfam.miag.services.AdminService;
 
 @RestController
 @RequestMapping("/admin")
+
+@CrossOrigin(origins = "http://localhost:4200")
+// THIS IS SO THAT ANGULAR GET INTERACT WITH OUR BACKEND
 public class AdminController {
 	@Autowired
 	AdminService adminService;
 	
 	private final Logger LOGGER = LoggerFactory.getLogger(AdminController.class);
 
-	@PostMapping("/delete")
+	/*@PostMapping("/delete")
 	public String deleteClient(@RequestBody Client client) {
 		boolean result = adminService.deleteClient(client.getIdClient());
 		
@@ -35,7 +39,8 @@ public class AdminController {
 			
 			return "FAILURE";
 			}
-	}
+	}*/
+
 
 	@PostMapping("/new")
 	public Admin addAdmin(@RequestBody Admin admin) {
@@ -52,4 +57,12 @@ public class AdminController {
 	public Admin getCompte(@PathVariable Long id) {
 		return adminService.getAdminById(id);
 	}
+	
+	@PostMapping("/delete")
+	public String deleteClient(@RequestBody Admin admin) {
+		adminService.deleteAdmin(admin.getIdAdmin());
+		return "Done";
+	}
+	
+	//updateAdmin()
 }

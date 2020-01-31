@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 
 import com.devfam.miag.entities.Client;
 
-@Service
 public interface ClientService {
 	
 	public boolean updateClient(Client client);
@@ -27,5 +26,7 @@ public interface ClientService {
 	public Client  getClient(Long id);
 	// CREATE NEW CLIENT
 	public Client addClient(Client client);
+	
+	public boolean deleteClient(Long id);
 
 }
