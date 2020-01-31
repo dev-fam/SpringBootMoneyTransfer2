@@ -27,19 +27,15 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-mail</artifactId>
 		</dependency>
-<<<<<<< HEAD
-		
-		<!--   <dependency>
-=======
+	
 		<dependency>
->>>>>>> 11008cfa552a986bf11b915fbce61d32feb3326c
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-oauth2-client</artifactId>
 		</dependency>-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
-<<<<<<< HEAD
+
 		</dependency>
 		<dependency>
     <groupId>log4j</groupId>
@@ -47,9 +43,7 @@
     <version>1.2.17</version>
 </dependency>
 		
-=======
-		</dependency> -->
->>>>>>> 11008cfa552a986bf11b915fbce61d32feb3326c
+
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

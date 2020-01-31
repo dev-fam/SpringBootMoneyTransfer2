@@ -32,7 +32,7 @@ class AdminRepositoryTest {
 	@Test
 	public void addedClientTest() {
 		List<Compte> listcompte = new ArrayList<>();
-		Client client = new Client(2L, "34566222","rox","222","Dia","Mamadou","oumar@gmail.com","5eme","34523725", listcompte);
+		Client client = new Client("34566222","rox","222","Dia","Mamadou","oumar@gmail.com","5eme","34523725", listcompte);
 		Client c = em.persist(client); 
 		//Client c1 = adminRepository.findByNni(c);
 		

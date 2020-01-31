@@ -1,9 +1,9 @@
 package com.devfam.miag.services;
 
-<<<<<<< HEAD
+
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-=======
+
 import java.util.List;
 import java.util.Optional;
 
@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.devfam.miag.dao.ClientRepository;
->>>>>>> 11008cfa552a986bf11b915fbce61d32feb3326c
 import com.devfam.miag.entities.Client;
 
 @Service
@@ -83,9 +82,10 @@ public class ClientServiceImp implements ClientService {
 	@Override
 	public String CryptdMdp(String pwd) {
 		// TODO Auto-generated method stub
-		 BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-	        String crypted= passwordEncoder.encode(pwd);
-		return crypted ;
+		Md5 cod=new Md5(pwd);
+		return cod.codeGet();
+		
+		
 	}
 
 }

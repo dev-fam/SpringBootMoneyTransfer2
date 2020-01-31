@@ -1,5 +1,6 @@
 package com.devfam.miag.web;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,14 +20,21 @@ import com.devfam.miag.services.AdminService;
 public class AdminController {
 	@Autowired
 	AdminService adminService;
+	
+	private final Logger LOGGER = LoggerFactory.getLogger(AdminController.class);
 
 	@PostMapping("/delete")
 	public String deleteClient(@RequestBody Client client) {
 		boolean result = adminService.deleteClient(client.getIdClient());
-		if (result == true)
-			return "SUCCESS";
-		else
+		
+		if (result == true) {
+			
+			
+			return "SUCCESS";}
+		else {
+			
 			return "FAILURE";
+			}
 	}
 
 	@PostMapping("/new")
@@ -36,6 +44,7 @@ public class AdminController {
 
 	@GetMapping("/all")
 	public List<Admin> getComptes() {
+		LOGGER.debug("Laffichage de tout les admin est un risque");
 		return adminService.getAllAdmins();
 	}
 
