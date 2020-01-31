@@ -20,7 +20,7 @@ import com.devfam.miag.services.ClientServiceImp;
 public class ProjetCompteClientApplication {
 
 	public static void main(String[] args) {
-		ApplicationContext ctx= SpringApplication.run(ProjetCompteClientApplication.class, args);
+		 SpringApplication.run(ProjetCompteClientApplication.class, args);
 		
 		
 		

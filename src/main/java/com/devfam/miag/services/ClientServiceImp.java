@@ -1,9 +1,8 @@
 package com.devfam.miag.services;
 
-<<<<<<< HEAD
+
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-=======
 import java.util.List;
 import java.util.Optional;
 
@@ -11,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.devfam.miag.dao.ClientRepository;
->>>>>>> 11008cfa552a986bf11b915fbce61d32feb3326c
 import com.devfam.miag.entities.Client;
 
 @Service
